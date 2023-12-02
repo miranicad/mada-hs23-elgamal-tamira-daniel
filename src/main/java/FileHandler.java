@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigInteger;
 
-public class FileReader {
+public class FileHandler {
 
     static BigInteger readHexToBigInteger(String fileName) {
         StringBuilder hexString = new StringBuilder();
