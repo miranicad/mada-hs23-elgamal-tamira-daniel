@@ -1,4 +1,6 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 
@@ -23,5 +25,14 @@ public class FileHandler {
         BigInteger number = BigInteger.ZERO;
 
         return new BigInteger(String.valueOf(hexString),16);
+    }
+
+    public static void writeKey(BigInteger key, String fileName) throws IOException {
+        try (BufferedWriter keyWriter = new BufferedWriter(new FileWriter("target/" + fileName+".txt"))) {
+            keyWriter.write(String.valueOf(key));
+        } catch (IOException ex) {
+            throw new IOException("Write to " + fileName + "failed.", ex);
+
+        }
     }
 }

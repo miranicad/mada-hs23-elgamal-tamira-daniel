@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
 public class Elgamal {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //n aus hex datei einlesen
         BigInteger n = FileHandler.readHexToBigInteger("hex.txt");
         System.out.println(n);
@@ -18,7 +19,8 @@ public class Elgamal {
         //Öffentlicher Schlüssel erzeugen
         BigInteger pk = g.modPow(sk, n);
 
-        //output der Schlüssel
-
+        //output der Schlüssel zu Ordner target
+        FileHandler.writeKey(sk,"sk");
+        FileHandler.writeKey(pk,"pk");
     }
 }
