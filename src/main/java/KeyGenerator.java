@@ -2,15 +2,14 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-public class Elgamal {
+public class KeyGenerator {
 
     public static void main(String[] args) throws IOException {
         //n aus hex datei einlesen
-        BigInteger n = FileHandler.readHexToBigInteger("hex.txt");
-        System.out.println(n);
+        BigInteger n = FileHandler.getN();
 
         //g definieren
-        BigInteger g = BigInteger.valueOf(2);
+        BigInteger g = FileHandler.getG();
 
         //Privater Schlüssel erzeugen
         SecureRandom random = new SecureRandom();
