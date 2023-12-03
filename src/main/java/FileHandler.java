@@ -74,6 +74,39 @@ public class FileHandler {
         return asciiCodes;
     }
 
+    static ElGamalCipherText[] readEncryptedFromFile(String fileName) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
+            String line = bufferedReader.readLine();
+            String[] pairs = line.split(";");
+
+            ElGamalCipherText[] encryptedValues = new ElGamalCipherText[pairs.length];
+            for (int i = 0; i < pairs.length; i++) {
+                // Parse the values from the format (y1, y2);
+                String[] parts = pairs[i].replaceAll("\\(", "").replaceAll("\\)", "").trim().split(",");
+                BigInteger a = new BigInteger(parts[0]);
+                BigInteger b = new BigInteger(parts[1]);
+                encryptedValues[i] = new ElGamalCipherText(a, b);
+            }
+
+            return encryptedValues;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    static void writeDecryptedToFile(String fileName, BigInteger[] decryptedValues) {
+        try (FileWriter fileWriter = new FileWriter(fileName)) {
+            for (BigInteger decryptedValue : decryptedValues) {
+                // Convert the decrypted value to ASCII character and write to the file
+                fileWriter.write((char) decryptedValue.intValue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
