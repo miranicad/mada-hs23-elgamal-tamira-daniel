@@ -40,7 +40,7 @@ public class Encryptor {
         try (FileWriter fileWriter = new FileWriter("target/"+fileName)) {
             for (ElGamalCipherText encryptedValue : encryptedValues) {
                 // Schreibe die verschlüsselten Werte in der Form (y1, y2);
-                fileWriter.write("(" + encryptedValue.getA() + ", " + encryptedValue.getB() + "); ");
+                fileWriter.write("(" + encryptedValue.getA() + "," + encryptedValue.getB() + ");");
             }
         } catch (IOException e) {
             e.printStackTrace();
